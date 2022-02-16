@@ -1,0 +1,12 @@
+entity Person {
+  name String required
+  age String required
+}
+
+entity Employee {
+  company String required
+}
+
+
+
+paginate Person, Employee with infinite-scroll
