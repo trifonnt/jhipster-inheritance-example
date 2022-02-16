@@ -6,12 +6,15 @@ import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo; //@Trifon
+
 //I added @Inheritance and @GeneratedValue(strategy = GenerationType.TABLE, generator = "sequenceGenerator")
 // so i can define inheritance strategy
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED) //@Trifon - old: TABLE_PER_CLASS
 @Table(name = "person")
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "class") //@Trifon
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Person implements Serializable {
 
